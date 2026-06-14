@@ -12,6 +12,7 @@ function Pelicula({ titulo }) {
         border: "1px solid gray",
         padding: "10 px",
         margin: "5px",
+        cursor: "pointer",
       }}
       onClick={() => setEsFavorita(!esFavorita)}
     >
