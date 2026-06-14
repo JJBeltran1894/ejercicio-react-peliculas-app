@@ -27,16 +27,37 @@ function Pelicula({ titulo }) {
 }
 
 function App() {
-  const listaPeliculas = [
+  const [peliculas, setPeliculas] = useState([
     "El señor de los Anillos",
     "Matrix",
     "Interestelar",
     "Volver al Futuro",
-  ];
+  ]);
+  const [nuevaPelicula, setNuevaPelicula] = useState("");
+
+  function agregarPelicula() {
+    if (nuevaPelicula.trim() === "") {
+      return;
+    }
+    setPeliculas([...peliculas, nuevaPelicula]);
+    setNuevaPelicula("");
+  }
   return (
     <div>
       <h1>Mis Películas Favoritas</h1>
-      {listaPeliculas.map((pelicula, indice) => (
+      <div>
+        <input
+          type="text"
+          value={nuevaPelicula}
+          onChange={(e) => setNuevaPelicula(e.target.value)}
+          placeholder="Escribe una pelicula..."
+          style={{ padding: "8px", marginRight: "10 px" }}
+        />
+        <button onClick={agregarPelicula} style={{ padding: "8px" }}>
+          Agregar Pelicula
+        </button>
+      </div>
+      {peliculas.map((pelicula, indice) => (
         <Pelicula key={indice} titulo={pelicula} />
       ))}
     </div>
