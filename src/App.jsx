@@ -13,6 +13,8 @@ function Pelicula({ titulo }) {
         padding: "10 px",
         margin: "5px",
         cursor: "pointer",
+        backgroundColor: esFavorita ? "#fffef2" : "transparent",
+        fontWeight: esFavorita ? "bold" : "normal",
       }}
       onClick={() => setEsFavorita(!esFavorita)}
     >
@@ -25,13 +27,18 @@ function Pelicula({ titulo }) {
 }
 
 function App() {
-  const [count, setCount] = useState(0);
-
+  const listaPeliculas = [
+    "El señor de los Anillos",
+    "Matrix",
+    "Interestelar",
+    "Volver al Futuro",
+  ];
   return (
     <div>
       <h1>Mis Películas Favoritas</h1>
-      <Pelicula titulo="El Señor de los Anillos" />
-      <Pelicula titulo="Matrix" />
+      {listaPeliculas.map((pelicula, indice) => (
+        <Pelicula key={indice} titulo={pelicula} />
+      ))}
     </div>
   );
 }
