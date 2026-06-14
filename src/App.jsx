@@ -8,20 +8,13 @@ function Pelicula({ titulo }) {
   const [esFavorita, setEsFavorita] = useState(false);
   return (
     <div
-      style={{
-        border: "1px solid gray",
-        padding: "10 px",
-        margin: "5px",
-        cursor: "pointer",
-        backgroundColor: esFavorita ? "#fffef2" : "transparent",
-        fontWeight: esFavorita ? "bold" : "normal",
-      }}
+      className={`tarjeta-pelicula ${esFavorita ? "favorita" : ""}`}
       onClick={() => setEsFavorita(!esFavorita)}
     >
-      <p>
+      <span style={{ fontWeight: esFavorita ? "bold" : "normal" }}>
         {titulo}
-        {esFavorita ? "⭐" : ""}
-      </p>
+        {esFavorita ? "⭐" : "🎬"}
+      </span>
     </div>
   );
 }
@@ -43,18 +36,19 @@ function App() {
     setNuevaPelicula("");
   }
   return (
-    <div>
-      <h1>Mis Películas Favoritas</h1>
-      <div>
+    <div className="contenedor-principal">
+      <h1 className="titulo">Cartelera Favorita</h1>
+      <div className="controles">
         <input
           type="text"
+          className="input-pelicula"
           value={nuevaPelicula}
           onChange={(e) => setNuevaPelicula(e.target.value)}
           placeholder="Escribe una pelicula..."
           style={{ padding: "8px", marginRight: "10 px" }}
         />
-        <button onClick={agregarPelicula} style={{ padding: "8px" }}>
-          Agregar Pelicula
+        <button className="btn-agregar" onClick={agregarPelicula}>
+          Agregar Película
         </button>
       </div>
       {peliculas.map((pelicula, indice) => (
